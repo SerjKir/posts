@@ -1,0 +1,2 @@
+*{box-sizing:border-box;margin:0;padding:0}.container{display:flex;flex-wrap:wrap}.header{background:#add8e6;height:50px;width:100%}.navbar{background:orange;display:flex;flex-direction:column;height:300px;width:100px}.main{flex-grow:1;height:300px}.main>div{min-height:100%}.home{background:bisque}.posts{background:#deb887}.error{background:red}.friends{background:coral}.friend{display:flex;margin-bottom:10px}.friend>div{margin-right:5px}.friend__info{background:#adff2f}.link-active{color:#000;font-weight:700}
+/*# sourceMappingURL=main.1adfe927.css.map*/
