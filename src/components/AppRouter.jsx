@@ -12,8 +12,8 @@ const AppRouter = () => {
             {
                 routes.map(route => <Route key={route.path} path={route.path} element={<route.element/>} exact={route.exact}/>)
             }
-            <Route path="/" element={<Navigate to="/home" replace />} exact/>
-            <Route path="*" element={<Navigate to="/error" replace />}/>
+            <Route path="/" element={<Navigate to="/posts/home" replace />} exact/>
+            <Route path="*" element={<Navigate to="/posts/error" replace />}/>
         </Routes>
     );
 };

@@ -8,7 +8,7 @@ const Friend = ({id, username}) => {
         <div className="friend">
             <div className="friend__id">{id}</div>
             <div className="friend__userName">{username}</div>
-            <button onClick={() => router('/friends/' + id)}>Показать подробности</button>
+            <button onClick={() => router('/posts/friends/' + id)}>Показать подробности</button>
         </div>
     );
 };
