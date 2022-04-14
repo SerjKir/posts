@@ -5,14 +5,14 @@ import Friend from "../components/Friend";
 const Friends = () => {
     const [friends, setFriends] = useState([])
 
-    const getFriendsData = async () => {
+    const getFriends = async () => {
         const response = await RestApi.getFriends()
         setFriends(response.data)
     }
 
     useEffect(() => {
-        getFriendsData()
-    })
+        getFriends()
+    }, [])
 
     return (
         <div className="friends">

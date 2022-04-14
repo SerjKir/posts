@@ -5,7 +5,7 @@ import Friends from "../pages/Friends";
 import FriendInfo from "../components/FriendInfo";
 
 export const routes = [
-    {path: "/posts/" , element: Home, exact: true},
+    {path: "/posts" , element: Home, exact: true},
     {path: "/posts/posts" , element: Posts, exact: true},
     {path: "/posts/error" , element: Error, exact: true},
     {path: "/posts/friends" , element: Friends, exact: true},
