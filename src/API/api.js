@@ -12,7 +12,12 @@ export default class RestApi {
     static async getPosts() {
         return await axios.get('https://jsonplaceholder.typicode.com/posts/')
     }
+
+    static async getPost(id) {
+        return await axios.get('https://jsonplaceholder.typicode.com/posts/' + id)
+    }
+
     static async getPostComments(id) {
-        return await axios.get('https://jsonplaceholder.typicode.com/users/' + id)
+        return await axios.get(`https://jsonplaceholder.typicode.com/posts/${id}/comments`)
     }
 }

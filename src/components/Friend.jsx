@@ -1,5 +1,5 @@
 import React from 'react';
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 const Friend = ({id, username}) => {
     const router = useNavigate();
@@ -7,8 +7,9 @@ const Friend = ({id, username}) => {
     return (
         <div className="friend">
             <div className="friend__id">{id}</div>
-            <div className="friend__userName">{username}</div>
-            <button onClick={() => router('/posts/friends/' + id)}>Показать подробности</button>
+            <Link to={'/posts/friends/' + id} className="friend__userName"> {username}</Link>
+            {/*<button>Показать посты</button>*/}
+            {/*<button onClick={() => router('/posts/friends/' + id)}>Показать подробности</button>*/}
         </div>
     );
 };

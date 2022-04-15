@@ -24,19 +24,8 @@
 }
 
 .main {
-  flex-grow: 1;
+  width: calc(100% - 100px);
   height: 300px;
-}
-
-.main > div {
-  min-height: 100%;
-}
-
-.home {
-  background: bisque;
-}
-
-.posts {
   background: burlywood;
 }
 
@@ -44,8 +33,17 @@
   background: red;
 }
 
-.friends {
-  background: coral;
+.main > div {
+  height: 100%;
+  overflow: auto;
+}
+
+.post, .comment {
+  margin-bottom: 15px;
+}
+
+.post > div, .comment > div {
+  margin-bottom: 5px;
 }
 
 .friend {
@@ -55,10 +53,6 @@
 
 .friend > div {
   margin-right: 5px;
-}
-
-.friend__info {
-  background: greenyellow;
 }
 
 .link-active {

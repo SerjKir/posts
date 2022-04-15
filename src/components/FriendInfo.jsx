@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import RestApi from "../API/api";
 import {useParams} from "react-router-dom";
+import Loader from "./Loader/Loader";
 
 const FriendInfo = () => {
-    const params = useParams()
+    const params = useParams().id
     const [friendInfo, setFriendInfo] = useState({})
     const getFriendInfo = async (id) => {
         const response = await RestApi.getFriendInfo(id)
@@ -11,19 +12,18 @@ const FriendInfo = () => {
     }
 
     useEffect(() => {
-        getFriendInfo(params.id)
-    })
+        getFriendInfo(params)
+    }, [])
 
-    if (Object.keys(friendInfo).length == 0) {
-        return <div>Идет загрузка данных</div>
+    if (Object.keys(friendInfo).length === 0) {
+        return <Loader/>
     }
 
 
     return (
         <div className="friend__info">
-            <div className="friend__id">{friendInfo.username}</div>
-            <div className="friend__name">{friendInfo.name}</div>
             <div className="friend__userName">{friendInfo.username}</div>
+            <div className="friend__name">{friendInfo.name}</div>
             <div className="friend__email">{friendInfo.email}</div>
             <div className="friend__phone">{friendInfo.phone}</div>
         </div>

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import RestApi from "../API/api";
 import Friend from "../components/Friend";
+import Loader from "../components/Loader/Loader";
 
 const Friends = () => {
     const [friends, setFriends] = useState([])
@@ -13,6 +14,10 @@ const Friends = () => {
     useEffect(() => {
         getFriends()
     }, [])
+
+    if (Object.keys(friends).length === 0) {
+        return <Loader/>
+    }
 
     return (
         <div className="friends">
