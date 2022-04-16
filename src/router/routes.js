@@ -12,11 +12,11 @@ export const routes = [
     {path: "/posts/error" , element: Error, exact: true},
     {path: "/posts/friends" , element: Friends, exact: true},
     {path: "/posts/friends/:id" , element: FriendInfo, exact: true},
+    {path: "/posts/posts/:id/userposts" , element: Posts, exact: true},
 ];
 
 export const links = [
-    {to: "/posts/", text: "Home"},
-    {to: "/posts/posts", text: "Posts"},
-    {to: "/posts/error", text: "Error"},
-    {to: "/posts/friends", text: "Friends"},
+    {to: "/posts/", text: "Домашняя"},
+    {to: "/posts/posts", text: "Посты"},
+    {to: "/posts/friends", text: "Друзья"},
 ]

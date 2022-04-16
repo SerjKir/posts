@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import RestApi from "../API/api";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import Loader from "./Loader/Loader";
 
 const FriendInfo = () => {
@@ -11,6 +11,8 @@ const FriendInfo = () => {
         setFriendInfo(response.data)
     }
 
+    const router = useNavigate()
+
     useEffect(() => {
         getFriendInfo(params)
     }, [])
@@ -19,13 +21,13 @@ const FriendInfo = () => {
         return <Loader/>
     }
 
-
     return (
         <div className="friend__info">
             <div className="friend__userName">{friendInfo.username}</div>
             <div className="friend__name">{friendInfo.name}</div>
             <div className="friend__email">{friendInfo.email}</div>
             <div className="friend__phone">{friendInfo.phone}</div>
+            <button onClick={() => router(`/posts/posts/${params}/userposts`)}>Показать посты пользователя</button>
         </div>
     );
 };

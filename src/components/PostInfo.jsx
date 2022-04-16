@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {Link, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import RestApi from "../API/api";
 import Comments from "./Comments";
 import Loader from "./Loader/Loader";
+import Post from "./Post";
 
 const PostInfo = () => {
     const params = useParams().id
@@ -31,11 +32,7 @@ const PostInfo = () => {
 
     return (
         <div className="post__info">
-            <div className="post">
-                {/*<div>{friend != null ? <div><strong>Author</strong> - <Link to={'/posts/friends/' + friend.id}>{friend.name}</Link></div> : ''}</div>*/}
-                <div><strong>Title</strong> - {post.title}</div>
-                <div><strong>Text</strong> {post.body}</div>
-            </div>
+            <Post {...post}/>
             {comments.map(comment => <Comments key={comment.id} {...comment} />)}
         </div>
     );

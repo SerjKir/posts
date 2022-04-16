@@ -2,31 +2,27 @@ import React, {useEffect, useState} from 'react';
 import RestApi from "../API/api";
 import Post from "../components/Post";
 import Loader from "../components/Loader/Loader";
+import {useNavigate, useParams} from "react-router-dom";
 
 const Posts = () => {
     const [posts, setPosts] = useState([])
     const [friends, setFriends] = useState([])
+    const [location, setLocation] = useState('')
+
+    if (location !== window.location.pathname) {
+        setLocation(window.location.pathname)
+    }
+
+    const params = useParams().id
 
     const getPosts = async () => {
         const response = await RestApi.getPosts()
-        function shuffle(array) {
-            let currentIndex = array.length,  randomIndex;
+        setPosts(response.data)
+    }
 
-            // While there remain elements to shuffle.
-            while (currentIndex !== 0) {
-
-                // Pick a remaining element.
-                randomIndex = Math.floor(Math.random() * currentIndex);
-                currentIndex--;
-
-                // And swap it with the current element.
-                [array[currentIndex], array[randomIndex]] = [
-                    array[randomIndex], array[currentIndex]];
-            }
-
-            return array;
-        }
-        setPosts(shuffle(response.data))
+    const getPostsUser = async (id) => {
+        const response = await RestApi.getPostsUser(id)
+        setPosts(response.data)
     }
 
     const getFriends = async () => {
@@ -34,10 +30,18 @@ const Posts = () => {
         setFriends(response.data)
     }
 
+    const router = useNavigate()
+
     useEffect(() => {
         getFriends()
-        getPosts()
-    }, [])
+        if (location.indexOf('userposts') === -1) {
+            getPosts()
+        }
+        else {
+            getPostsUser(params)
+        }
+        setLocation(window.location.pathname)
+    }, [location])
 
     if (Object.keys(posts).length === 0 || Object.keys(friends).length === 0) {
         return <Loader/>
@@ -45,7 +49,11 @@ const Posts = () => {
 
     return (
         <div className="posts">
-            {posts.map(post => <Post key={post.id} {...post} friend={friends.find((friend) => friend.id === post.userId)} />)}
+            {posts.map(post =>
+                <div className="post__item" key={post.id}>
+                    <Post {...post} friend={friends.find((friend) => friend.id === post.userId)} />
+                    <button onClick={() => router('/posts/posts/' + post.id)}>Открыть комментарии</button>
+                </div>)}
         </div>
     );
 };
